@@ -49,7 +49,23 @@ def translate_command(message):
     except:
         bot.reply_to(message,"wrong format use /translate <text to translate here>")
         
-        
+@bot.message_handler(['qtr'])
+def quicktranslate_command(message):
+    if message.reply_to_message.text == "":
+        bot.reply_to(message,"reply to a message to translate it")
+    else:
+        text = str(message.reply_to_message.text)
+        dl=detect(f'{text}')
+        print(dl)
+        if dl == 'en':
+            return
+        else:
+            result = translator.translate(f'{(text)}', target_language='en')
+            
+            bot.reply_to(message,text=(f'{result}'))
+            
+            logging.info(f'User @{message.from_user.username}({message.chat.id}) says: {text}\n\t\t\t\tTranslated to: {result}')           
+        return result        
 
 @bot.message_handler(content_types=['ERROR'])
 def error(message):
