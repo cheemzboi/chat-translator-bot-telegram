@@ -110,7 +110,7 @@ def saver(chetid,onf):
                         koko=re.sub(f'{dicdone}','',r)
                         f.write(koko)
     
-@bot.message_handler(commands=['auto'],chat_types=['group','supergroup'])
+@bot.message_handler(commands=['auto'])
 def handle_message(message):
     print(message.chat.type)
     
@@ -182,6 +182,8 @@ def handle_message(message):
     print(koko)
     bot.reply_to(message,str(koko))
      
+     
+
 
 
 
